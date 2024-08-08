@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <h1>Catálogo de Productos</h1>
+    <div class="container">
+        <div class="row">
+            {% for product in products %}
+            <div class="col-md-4 mb-4">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <img class="card-img-top" src="{{ url_for('static', filename='images/'+product+'.jpg') }}" alt="Imagen del producto">
+                        <h5 class="card-title">{{ product }}</h5>
+                        <a href="{{ url_for('buy', product=product) }}" class="btn btn-primary">Comprar</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <a href="{{ url_for('index') }}">Volver al Inicio</a>
+</body>
+</html>

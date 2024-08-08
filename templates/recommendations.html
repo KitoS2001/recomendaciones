@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recomendaciones</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+</head>
+<body>
+    <h1>Gracias por comprar {{ product }}</h1>
+
+    {% if recommendations %}
+    <h2>También te podría interesar:</h2>
+    <div class="container">
+        <div class="row">
+            {% for rec in recommendations %}
+            <div class="col-md-4 mb-4">
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="{{ url_for('static', filename='images/' + rec + '.jpg') }}" alt="Imagen de {{ rec }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ rec }}</h5>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% else %}
+    <p>No hay recomendaciones disponibles en este momento.</p>
+    {% endif %}
+    
+    <a href="{{ url_for('catalog') }}">Volver al Catálogo</a>
+</body>
+</html>
